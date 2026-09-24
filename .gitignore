@@ -1,0 +1,16 @@
+# Build output and runtime logs
+*.exe
+*.zip
+son-islem.txt
+energy-helper-result.txt
+energy-test.txt
+test-sonucu.txt
+quick-inspect.txt
+onizleme.png
+*.lnk
+
+# IDE / OS
+.vs/
+bin/
+obj/
+Thumbs.db
