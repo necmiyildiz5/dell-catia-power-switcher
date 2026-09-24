@@ -1,93 +1,63 @@
-# Dell CATIA Power Switcher
+# Dell Power Switcher for CATIA
 
-**Türkçe aşağıda / Turkish below.**
+A compact Windows 11 profile switcher for Dell computers with Dell Optimizer.
 
-## ⚠️ Compatibility — read before downloading
+[English](#english) · [Türkçe](#türkçe)
 
-This is a **beta utility only for Windows 11 Dell computers that have Dell Optimizer installed**. It will not work as intended unless all of these are available:
+## English
 
-- Dell Optimizer, including its `do-cli.exe` command-line tool
-- Windows **Ultimate Performance** and **Power saver** power plans
-- Permission to approve the Windows administrator prompt
+### Profiles
 
-If your PC is not a Dell system, uses Windows 10, does not have Dell Optimizer, or lacks either power plan, **do not use this release**.
+| Profile | Dell Optimizer | Windows |
+| --- | --- | --- |
+| **CATIA** | Ultra Performance | Ultimate Performance |
+| **QUIET** | Quiet | Windows efficiency profile |
 
-## What it switches
+Choose **English** or **Türkçe** inside the application. `activity-log.txt` records the latest switch, while `diagnostics.txt` is created separately when Diagnostics is selected.
 
-| Profile | Windows plan | Dell thermal mode | Energy saver |
-| --- | --- | --- | --- |
-| **PERFO** | Ultimate Performance | Ultra Performance | Off |
-| **SAVER** | Power saver | Quiet | On |
+### Requirements
 
-For CATIA work, choose **PERFO**. For everyday use, choose **SAVER**.
+- Windows 11
+- A Dell computer with Dell Optimizer and `do-cli.exe`
+- The Ultimate Performance plan and the Windows low-power profile
+- Administrator approval for Dell Optimizer thermal-mode changes
 
-## Download and run
+Windows Energy Saver is selected separately from Windows Quick Settings.
 
-1. Download `PerfoSaver-v0.5.0.zip` from the latest [Release](../../releases).
-2. Extract it to a permanent folder. Keep `PerfoSaver-v5.exe` and `PerfoSaver-EnergyHelper.exe` together.
-3. Run `PerfoSaver-v5.exe` and approve the administrator prompt.
-4. Choose PERFO or SAVER.
+### Install
 
-> **Beta note:** Windows power-plan and Dell Quiet/Ultra changes were tested on the original Dell computer. Energy saver automation needs validation across additional Windows 11 and Dell models.
+1. Download the latest release ZIP.
+2. Extract it to a permanent folder.
+3. Run `Dell-Power-Switcher-for-CATIA.exe` and approve the administrator prompt.
+4. Select **CATIA** for demanding work or **QUIET** for everyday use.
 
-## Before using
+## Türkçe
 
-In Dell Optimizer, turn off **Allow Dell Optimizer to synchronize thermal management mode with Windows power mode settings and vice versa**. Otherwise Dell can overwrite the selected profile.
+### Profiller
 
-## Troubleshooting
+| Profil | Dell Optimizer | Windows |
+| --- | --- | --- |
+| **CATIA** | Ultra Performance | Ultimate Performance |
+| **QUIET** | Quiet | Windows verimlilik profili |
 
-- Dell error 9: close Dell Optimizer and retry.
-- Energy saver failed: open **Settings → System → Power & battery → Energy saver** once, then retry.
-- A required power plan is missing: see [Troubleshooting](docs/TROUBLESHOOTING.md).
-- This unsigned utility may trigger Windows Defender; review the source and build with `Derle.ps1` if preferred.
+Uygulama içindeki **English** veya **Türkçe** bağlantısıyla dil seçilir. `activity-log.txt` son geçişi, `diagnostics.txt` ise Tanılama seçildiğinde ayrı olarak oluşur.
 
-## Build from source
+### Gereksinimler
 
-```powershell
-Set-ExecutionPolicy -Scope Process Bypass
-.\Derle.ps1
-```
+- Windows 11
+- Dell Optimizer ve `do-cli.exe` içeren bir Dell bilgisayar
+- Ultimate Performance planı ve Windows düşük güç profili
+- Dell Optimizer termal mod geçişi için yönetici izni
 
-[MIT License](LICENSE) · [Contributing](CONTRIBUTING.md)
+Windows Energy Saver, sağ alttaki Windows Hızlı Ayarlar panelinden ayrıca seçilir.
 
----
+### Kurulum
 
-# Dell CATIA Power Switcher — Türkçe
+1. En güncel sürüm ZIP dosyasını indirin.
+2. Kalıcı bir klasöre çıkarın.
+3. `Dell-Power-Switcher-for-CATIA.exe` dosyasını çalıştırın ve yönetici iznini onaylayın.
+4. Yoğun çalışmalar için **CATIA**, günlük kullanım için **QUIET** seçin.
 
-## ⚠️ Uyumluluk — indirmeden önce okuyun
+## Disclaimer
 
-Bu araç, **yalnızca Dell Optimizer kurulu Windows 11 Dell bilgisayarları** için hazırlanmış beta bir uygulamadır. Aşağıdakilerin tamamı yoksa amaçlandığı gibi çalışmaz:
-
-- Dell Optimizer ve `do-cli.exe` komut satırı aracı
-- Windows’ta **Ultimate Performance** ve **Power saver** güç planları
-- Windows yönetici iznini onaylama yetkisi
-
-Bilgisayarınız Dell değilse, Windows 10 kullanıyorsa, Dell Optimizer yoksa veya iki güç planından biri yoksa **bu sürümü kullanmayın**.
-
-## Ne yapar?
-
-| Profil | Windows planı | Dell ısıl mod | Energy saver |
-| --- | --- | --- | --- |
-| **PERFO** | Ultimate Performance | Ultra Performance | Kapalı |
-| **SAVER** | Power saver | Quiet | Açık |
-
-CATIA çalışırken **PERFO**, günlük kullanımda **SAVER** seçin.
-
-## İndir ve çalıştır
-
-1. En son [Release](../../releases) sayfasından `PerfoSaver-v0.5.0.zip` indirin.
-2. Kalıcı bir klasöre çıkarın; iki EXE dosyası aynı klasörde kalmalıdır.
-3. `PerfoSaver-v5.exe` dosyasını açın ve yönetici iznini onaylayın.
-4. PERFO veya SAVER seçin.
-
-## Kullanmadan önce
-
-Dell Optimizer içinden **Allow Dell Optimizer to synchronize thermal management mode with Windows power mode settings and vice versa** ayarını kapatın. Açık kalırsa Dell seçtiğiniz profili değiştirebilir.
-
-## Sorun giderme
-
-- Dell hata 9: Dell Optimizer’ı kapatıp tekrar deneyin.
-- Energy saver uygulanmadı: **Ayarlar → Sistem → Güç ve pil → Energy saver** sayfasını bir kez açıp tekrar deneyin.
-- Güç planı yok: [Sorun giderme](docs/TROUBLESHOOTING.md) sayfasına bakın.
-
-Bu beta sürümünde Energy saver otomasyonu farklı Dell ve Windows 11 sürümlerinde daha fazla doğrulama gerektirir. Sorun bildirirken Dell modeli, Windows sürümü, Dell Optimizer sürümü ve kişisel yolları silinmiş `son-islem.txt` bilgisini ekleyin.
+Dell, CATIA and Windows are trademarks of their respective owners. This independent utility is not affiliated with or endorsed by Dell Technologies or Dassault Systèmes.
