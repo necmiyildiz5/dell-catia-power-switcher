@@ -1,119 +1,93 @@
-# Perfo / Saver for Dell + CATIA
+# Dell CATIA Power Switcher
 
 **Türkçe aşağıda / Turkish below.**
 
-A small Windows utility for Dell workstations used with CATIA. Select a profile instead of opening Dell Optimizer, Control Panel, and Windows Quick Settings separately.
+## ⚠️ Compatibility — read before downloading
 
-| Profile | Windows power plan | Dell Optimizer thermal mode | Windows Energy saver |
+This is a **beta utility only for Windows 11 Dell computers that have Dell Optimizer installed**. It will not work as intended unless all of these are available:
+
+- Dell Optimizer, including its `do-cli.exe` command-line tool
+- Windows **Ultimate Performance** and **Power saver** power plans
+- Permission to approve the Windows administrator prompt
+
+If your PC is not a Dell system, uses Windows 10, does not have Dell Optimizer, or lacks either power plan, **do not use this release**.
+
+## What it switches
+
+| Profile | Windows plan | Dell thermal mode | Energy saver |
 | --- | --- | --- | --- |
 | **PERFO** | Ultimate Performance | Ultra Performance | Off |
 | **SAVER** | Power saver | Quiet | On |
 
-> **Beta status.** The Windows power-plan and Dell Quiet/Ultra changes were tested on the original Dell computer. Energy saver automation has been updated but needs validation on more Windows 11 and Dell configurations. Please open an issue with your Dell model, Windows version, Dell Optimizer version, and the contents of `son-islem.txt` if it fails.
+For CATIA work, choose **PERFO**. For everyday use, choose **SAVER**.
 
 ## Download and run
 
-1. Open the latest GitHub **Release** and download `PerfoSaver-v5.zip`.
-2. Extract it to a permanent folder, for example `C:\Tools\PerfoSaver`.
-3. Run `PerfoSaver-v5.exe` and approve the Windows administrator prompt. Dell Optimizer needs administrator rights for thermal-mode changes.
-4. Choose **PERFO** before a demanding CATIA session, or **SAVER** for everyday use.
+1. Download `PerfoSaver-v0.5.0.zip` from the latest [Release](../../releases).
+2. Extract it to a permanent folder. Keep `PerfoSaver-v5.exe` and `PerfoSaver-EnergyHelper.exe` together.
+3. Run `PerfoSaver-v5.exe` and approve the administrator prompt.
+4. Choose PERFO or SAVER.
 
-The package must keep `PerfoSaver-v5.exe` and `PerfoSaver-EnergyHelper.exe` in the same folder. The helper is intentionally not elevated: Windows exposes the Energy saver switch to the normal desktop session.
+> **Beta note:** Windows power-plan and Dell Quiet/Ultra changes were tested on the original Dell computer. Energy saver automation needs validation across additional Windows 11 and Dell models.
 
-## What you need
+## Before using
 
-- Windows 11
-- Dell Optimizer installed, including the command-line interface (`do-cli.exe`)
-- The **Ultimate Performance** and **Power saver** plans available in Windows
-
-In Dell Optimizer, disable **Allow Dell Optimizer to synchronize thermal management mode with Windows power mode settings and vice versa**. Otherwise Dell can overwrite the selected profile.
-
-## Keyboard shortcut
-
-Create a shortcut to `PerfoSaver-v5.exe`, open its Properties, and set a shortcut key such as `Ctrl + Alt + P`.
+In Dell Optimizer, turn off **Allow Dell Optimizer to synchronize thermal management mode with Windows power mode settings and vice versa**. Otherwise Dell can overwrite the selected profile.
 
 ## Troubleshooting
 
-- **Dell error 9:** close Dell Optimizer and try again.
-- **Energy saver is not applied:** open **Settings → System → Power & battery → Energy saver** once, then retry. Check `son-islem.txt` in the app folder.
-- **A plan is missing:** restore or create the plan in Windows, then see [Troubleshooting](docs/TROUBLESHOOTING.md).
-- **Windows Defender warning:** this is an unsigned personal utility. Review the source and build it yourself with `Derle.ps1` if you prefer.
+- Dell error 9: close Dell Optimizer and retry.
+- Energy saver failed: open **Settings → System → Power & battery → Energy saver** once, then retry.
+- A required power plan is missing: see [Troubleshooting](docs/TROUBLESHOOTING.md).
+- This unsigned utility may trigger Windows Defender; review the source and build with `Derle.ps1` if preferred.
 
 ## Build from source
-
-Run PowerShell in the repository folder:
 
 ```powershell
 Set-ExecutionPolicy -Scope Process Bypass
 .\Derle.ps1
 ```
 
-This uses the .NET Framework compiler included with Windows. It produces the elevated main app and the non-elevated Energy saver helper.
-
-## Contributing
-
-New Dell models and Windows versions are especially useful. Please read [CONTRIBUTING.md](CONTRIBUTING.md) before opening an issue or pull request.
-
-## License
-
-[MIT](LICENSE)
+[MIT License](LICENSE) · [Contributing](CONTRIBUTING.md)
 
 ---
 
-# Perfo / Saver — Dell + CATIA için
+# Dell CATIA Power Switcher — Türkçe
 
-Dell iş istasyonunda CATIA kullananlar için küçük bir Windows aracı. Dell Optimizer, Denetim Masası ve Hızlı Ayarlar’ı tek tek açmak yerine bir profil seçersiniz.
+## ⚠️ Uyumluluk — indirmeden önce okuyun
 
-| Profil | Windows güç planı | Dell Optimizer ısıl mod | Windows Enerji tasarrufu |
+Bu araç, **yalnızca Dell Optimizer kurulu Windows 11 Dell bilgisayarları** için hazırlanmış beta bir uygulamadır. Aşağıdakilerin tamamı yoksa amaçlandığı gibi çalışmaz:
+
+- Dell Optimizer ve `do-cli.exe` komut satırı aracı
+- Windows’ta **Ultimate Performance** ve **Power saver** güç planları
+- Windows yönetici iznini onaylama yetkisi
+
+Bilgisayarınız Dell değilse, Windows 10 kullanıyorsa, Dell Optimizer yoksa veya iki güç planından biri yoksa **bu sürümü kullanmayın**.
+
+## Ne yapar?
+
+| Profil | Windows planı | Dell ısıl mod | Energy saver |
 | --- | --- | --- | --- |
 | **PERFO** | Ultimate Performance | Ultra Performance | Kapalı |
 | **SAVER** | Power saver | Quiet | Açık |
 
-> **Beta durumu.** Windows güç planı ile Dell Quiet/Ultra geçişi ilk Dell bilgisayarında denendi. Energy saver otomasyonu güncellendi; farklı Windows 11 ve Dell kurulumlarında daha fazla doğrulama gerekiyor. Sorun olursa Dell modelinizi, Windows sürümünüzü, Dell Optimizer sürümünüzü ve `son-islem.txt` içeriğini Issue olarak paylaşın.
+CATIA çalışırken **PERFO**, günlük kullanımda **SAVER** seçin.
 
 ## İndir ve çalıştır
 
-1. En son GitHub **Release** sayfasından `PerfoSaver-v5.zip` dosyasını indirin.
-2. Dosyayı kalıcı bir klasöre çıkarın: örneğin `C:\Tools\PerfoSaver`.
-3. `PerfoSaver-v5.exe` dosyasını açın ve Windows yönetici iznine onay verin. Dell Optimizer ısıl mod değişimi için bu izin gerekir.
-4. Yoğun CATIA çalışmasından önce **PERFO**, günlük kullanımda **SAVER** seçin.
+1. En son [Release](../../releases) sayfasından `PerfoSaver-v0.5.0.zip` indirin.
+2. Kalıcı bir klasöre çıkarın; iki EXE dosyası aynı klasörde kalmalıdır.
+3. `PerfoSaver-v5.exe` dosyasını açın ve yönetici iznini onaylayın.
+4. PERFO veya SAVER seçin.
 
-Paketteki `PerfoSaver-v5.exe` ile `PerfoSaver-EnergyHelper.exe` aynı klasörde kalmalıdır. Yardımcı uygulama bilerek yönetici olarak çalışmaz; Windows Energy saver anahtarını normal masaüstü oturumuna gösterir.
+## Kullanmadan önce
 
-## Gereksinimler
-
-- Windows 11
-- Komut satırı aracı (`do-cli.exe`) ile kurulu Dell Optimizer
-- Windows’ta **Ultimate Performance** ve **Power saver** planlarının bulunması
-
-Dell Optimizer içinden **Allow Dell Optimizer to synchronize thermal management mode with Windows power mode settings and vice versa** ayarını kapatın. Açık olursa Dell seçilen profili geri değiştirebilir.
-
-## Kısayol tuşu
-
-`PerfoSaver-v5.exe` için bir kısayol oluşturun, Özellikler’i açın ve örneğin `Ctrl + Alt + P` atayın.
+Dell Optimizer içinden **Allow Dell Optimizer to synchronize thermal management mode with Windows power mode settings and vice versa** ayarını kapatın. Açık kalırsa Dell seçtiğiniz profili değiştirebilir.
 
 ## Sorun giderme
 
-- **Dell hata 9:** Dell Optimizer’ı kapatıp yeniden deneyin.
-- **Energy saver uygulanmadı:** **Ayarlar → Sistem → Güç ve pil → Energy saver** bölümünü bir kez açın, sonra tekrar deneyin. Uygulama klasöründeki `son-islem.txt` dosyasını inceleyin.
-- **Güç planı yok:** Windows’ta planı geri getirin veya oluşturun; [Sorun giderme](docs/TROUBLESHOOTING.md) sayfasına bakın.
-- **Windows Defender uyarısı:** Bu imzasız kişisel bir araçtır. İsterseniz kaynak kodu inceleyip `Derle.ps1` ile kendiniz derleyin.
+- Dell hata 9: Dell Optimizer’ı kapatıp tekrar deneyin.
+- Energy saver uygulanmadı: **Ayarlar → Sistem → Güç ve pil → Energy saver** sayfasını bir kez açıp tekrar deneyin.
+- Güç planı yok: [Sorun giderme](docs/TROUBLESHOOTING.md) sayfasına bakın.
 
-## Kaynak koddan derleme
-
-Depo klasöründe PowerShell açıp şunu çalıştırın:
-
-```powershell
-Set-ExecutionPolicy -Scope Process Bypass
-.\Derle.ps1
-```
-
-Windows’un kendi .NET Framework derleyicisi kullanılır. Komut, yönetici yetkili ana uygulamayı ve normal yetkili Energy saver yardımcısını üretir.
-
-## Katkı
-
-Farklı Dell modelleri ve Windows sürümleri çok değerlidir. Issue veya pull request açmadan önce [CONTRIBUTING.md](CONTRIBUTING.md) dosyasına bakın.
-
-## Lisans
-
-[MIT](LICENSE)
+Bu beta sürümünde Energy saver otomasyonu farklı Dell ve Windows 11 sürümlerinde daha fazla doğrulama gerektirir. Sorun bildirirken Dell modeli, Windows sürümü, Dell Optimizer sürümü ve kişisel yolları silinmiş `son-islem.txt` bilgisini ekleyin.
